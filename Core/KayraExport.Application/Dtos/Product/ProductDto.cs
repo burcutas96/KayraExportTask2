@@ -1,13 +1,12 @@
-﻿using KayraExport.Domain.Entities.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KayraExport.Domain.Entities
+namespace KayraExport.Application.Dtos.Product
 {
-    public class Product : BaseEntity
+    public class ProductDto
     {
         public string Name { get; set; }
 
@@ -16,11 +15,5 @@ namespace KayraExport.Domain.Entities
         public string Description { get; set; }
 
         public int Stock { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? UpdateDate { get; set; }
-
-        public DateTime? DeleteDate { get; set; }
     }
 }

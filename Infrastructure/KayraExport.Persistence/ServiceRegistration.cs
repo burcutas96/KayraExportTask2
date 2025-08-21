@@ -1,6 +1,6 @@
-﻿using KayraExport.Application.Abstract;
-using KayraExport.Persistence.Concrete;
+﻿using KayraExport.Application.Repositories;
 using KayraExport.Persistence.Context;
+using KayraExport.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +23,9 @@ namespace KayraExport.Persistence
             services.AddDbContext<KayraExportContext>(options => 
                 options.UseNpgsql(configurationManager.GetConnectionString("PostgreSql")));
 
-            services.AddScoped<IProductService, ProductManager>();
+
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
         }
     }
 }

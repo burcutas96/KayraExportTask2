@@ -1,4 +1,5 @@
-﻿using KayraExport.Application.Abstract;
+﻿using KayraExport.Application.Features.Queries.GetAllProduct;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,16 @@ namespace KayraExport.Api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        readonly IProductService _productService;
+        readonly IMediator _mediator;
 
-        public ProductsController(IProductService productService)
-            => _productService = productService;
+        public ProductsController(IMediator mediator)
+            => _mediator = mediator;
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
+            => Ok(await _mediator.Send(getAllProductQueryRequest));
+
     }
 }
