@@ -16,6 +16,8 @@ namespace KayraExport.Application.Repositories
 
         Task<T?> GetSingleAsync(Expression<Func<T, bool>> expression);
 
+        Task<T?> GetSingleReadOnlyAsync(Expression<Func<T, bool>> expression);
+
         Task<T?> GetByIdAsync(int id);
     }
 }

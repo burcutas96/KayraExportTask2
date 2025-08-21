@@ -36,6 +36,10 @@ namespace KayraExport.Persistence.Repositories
         public async Task<T?> GetSingleAsync(Expression<Func<T, bool>> expression)
             => await Table.SingleOrDefaultAsync(expression);
 
+         
+        public async Task<T?> GetSingleReadOnlyAsync(Expression<Func<T, bool>> expression)
+            => await Table.AsNoTracking().SingleOrDefaultAsync(expression);
+
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
             => Table.Where(expression);

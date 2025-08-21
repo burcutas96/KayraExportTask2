@@ -1,11 +1,13 @@
 ﻿using KayraExport.Application.Features.Queries.GetAllProduct;
+using KayraExport.Application.Features.Queries.GetById;
+using KayraExport.Domain.Exceptions.Product;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KayraExport.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -20,5 +22,20 @@ namespace KayraExport.Api.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
             => Ok(await _mediator.Send(getAllProductQueryRequest));
 
+
+
+
+        [HttpGet("{ProductId}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(getByIdProductQueryRequest));
+            }
+            catch (ProductNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+        }
     }
 }
