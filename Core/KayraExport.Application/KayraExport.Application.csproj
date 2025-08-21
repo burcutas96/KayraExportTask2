@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KayraExport.Domain\KayraExport.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
