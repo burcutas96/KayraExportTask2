@@ -16,8 +16,4 @@
     <ProjectReference Include="..\KayraExport.Domain\KayraExport.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Commands\" />
-  </ItemGroup>
-
 </Project>

@@ -43,5 +43,10 @@ namespace KayraExport.Persistence.Repositories
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
             => Table.Where(expression);
+
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression) 
+            => await Table.AnyAsync(expression);
+        
     }
 }

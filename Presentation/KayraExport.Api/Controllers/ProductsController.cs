@@ -1,4 +1,6 @@
-﻿using KayraExport.Application.Features.Queries.GetAllProduct;
+﻿using KayraExport.Application.Features.Commands.AddProduct;
+using KayraExport.Application.Features.Commands.UpdateProduct;
+using KayraExport.Application.Features.Queries.GetAllProduct;
 using KayraExport.Application.Features.Queries.GetById;
 using KayraExport.Domain.Exceptions.Product;
 using MediatR;
@@ -28,5 +30,23 @@ namespace KayraExport.Api.Controllers
         [HttpGet("{ProductId}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
             => Ok(await _mediator.Send(getByIdProductQueryRequest));
+
+
+
+         
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] AddProductCommandRequest addProductCommandRequest)
+            => Ok(await _mediator.Send(addProductCommandRequest));
+
+
+
+
+        [HttpPut("{ProductId}")]
+        public async Task<IActionResult> Update([FromRoute] int ProductId, [FromBody] UpdateProductCommandRequest updateProductCommandRequest)
+        {
+            updateProductCommandRequest.ProductId = ProductId;
+
+            return Ok(await _mediator.Send(updateProductCommandRequest));
+        }
     }
 }
