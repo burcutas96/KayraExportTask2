@@ -1,6 +1,8 @@
-﻿using KayraExport.Application.Repositories;
+﻿using KayraExport.Application.Abstractions.Services;
+using KayraExport.Application.Repositories;
 using KayraExport.Persistence.Context;
 using KayraExport.Persistence.Repositories;
+using KayraExport.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,11 @@ namespace KayraExport.Persistence
 
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+
+            services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
+
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }
