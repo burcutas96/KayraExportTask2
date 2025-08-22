@@ -1,3 +1,4 @@
+using KayraExport.Api.Middlewares;
 using KayraExport.Application;
 using KayraExport.Persistence;
 
@@ -22,6 +23,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

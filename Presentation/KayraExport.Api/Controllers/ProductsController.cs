@@ -27,15 +27,6 @@ namespace KayraExport.Api.Controllers
 
         [HttpGet("{ProductId}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
-        {
-            try
-            {
-                return Ok(await _mediator.Send(getByIdProductQueryRequest));
-            }
-            catch (ProductNotFoundException ex)
-            {
-                return NotFound(new { Message = ex.Message });
-            }
-        }
+            => Ok(await _mediator.Send(getByIdProductQueryRequest));
     }
 }
