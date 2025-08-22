@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace KayraExport.Application.Dtos.Product
 {
-    public class ProductDetailDto : ProductDto
+    public class ProductListDto : ProductDto
     {
-        public DateTime CreateDate { get; set; }
-
-        public DateTime? UpdateDate { get; set; }
+        public int Id { get; set; }
 
     }
 }

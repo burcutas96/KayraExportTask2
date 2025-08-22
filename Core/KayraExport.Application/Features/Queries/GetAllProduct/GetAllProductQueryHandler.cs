@@ -24,11 +24,12 @@ namespace KayraExport.Application.Features.Queries.GetAllProduct
             List<Product> products = await _productReadRepository
                 .GetAllAsync(p => !p.IsDeleted);
 
-            List<ProductDto> productDtos = new();
+            List<ProductListDto> productDtos = new();
 
             products.ForEach(p => productDtos.Add(
                 new()
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
                     Price = p.Price,

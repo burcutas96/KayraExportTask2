@@ -1,4 +1,5 @@
 ﻿using KayraExport.Application.Features.Commands.AddProduct;
+using KayraExport.Application.Features.Commands.DeleteProduct;
 using KayraExport.Application.Features.Commands.UpdateProduct;
 using KayraExport.Application.Features.Queries.GetAllProduct;
 using KayraExport.Application.Features.Queries.GetById;
@@ -48,5 +49,12 @@ namespace KayraExport.Api.Controllers
 
             return Ok(await _mediator.Send(updateProductCommandRequest));
         }
+
+
+
+
+        [HttpDelete("{ProductId}")]
+        public async Task<IActionResult> Delete([FromRoute] DeleteProductCommandRequest deleteProductCommandRequest)
+            => Ok(await _mediator.Send(deleteProductCommandRequest));
     }
 }

@@ -9,6 +9,6 @@ namespace KayraExport.Application.Features.Queries.GetAllProduct
 {
     public class GetAllProductQueryResponse
     {
-        public List<ProductDto> ProductDtos { get; set; }
+        public List<ProductListDto> ProductDtos { get; set; }
     }
 }
