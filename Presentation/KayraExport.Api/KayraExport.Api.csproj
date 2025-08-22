@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\KayraExport.Application\KayraExport.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\KayraExport.Infrastructure\KayraExport.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\KayraExport.Persistence\KayraExport.Persistence.csproj" />
   </ItemGroup>
 

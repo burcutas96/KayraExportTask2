@@ -1,13 +1,7 @@
-﻿using KayraExport.Application.Dtos.Product;
+﻿using KayraExport.Application.Abstractions.Cache;
 using KayraExport.Application.Repositories;
-using KayraExport.Domain.Entities;
 using KayraExport.Domain.Exceptions.Product;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KayraExport.Application.Features.Commands.AddProduct
 {
@@ -15,11 +9,16 @@ namespace KayraExport.Application.Features.Commands.AddProduct
     {
         readonly IProductWriteRepository _productWriteRepository;
         readonly IProductReadRepository _productReadRepository;
+        readonly ICacheService _cacheService;
 
-        public AddProductCommandHandler(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
+        public AddProductCommandHandler(
+            IProductWriteRepository productWriteRepository, 
+            IProductReadRepository productReadRepository, 
+            ICacheService cacheService)
         {
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
+            _cacheService = cacheService;
         }
 
 
@@ -41,6 +40,8 @@ namespace KayraExport.Application.Features.Commands.AddProduct
             });
 
             await _productWriteRepository.SaveChangesAsync();
+
+            await _cacheService.RemoveRangeAsync("GetAllProductQueryRequest", "GetByIdProductQueryRequest");
 
             return new() { Message = "Ürün başarıyla eklendi." };
         }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using KayraExport.Application.Abstractions.Cache;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KayraExport.Application.Features.Queries.GetAllProduct
 {
-    public class GetAllProductQueryRequest : IRequest<GetAllProductQueryResponse>
+    public class GetAllProductQueryRequest : IRequest<GetAllProductQueryResponse>, ICacheableQuery
     {
     }
 }

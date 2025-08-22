@@ -1,5 +1,6 @@
 using KayraExport.Api.Middlewares;
 using KayraExport.Application;
+using KayraExport.Infrastructure;
 using KayraExport.Persistence;
 using Serilog;
 using Serilog.Core;
@@ -21,6 +22,8 @@ Logger log = new LoggerConfiguration()
 builder.Host.UseSerilog(log);
 
 builder.Services.AddPersistenceServices();
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddApplicationServices();
 

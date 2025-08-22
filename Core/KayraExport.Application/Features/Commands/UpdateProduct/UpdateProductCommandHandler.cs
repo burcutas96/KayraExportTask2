@@ -1,13 +1,8 @@
-﻿using KayraExport.Application.Dtos.Product;
+﻿using KayraExport.Application.Abstractions.Cache;
 using KayraExport.Application.Repositories;
 using KayraExport.Domain.Entities;
 using KayraExport.Domain.Exceptions.Product;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KayraExport.Application.Features.Commands.UpdateProduct
 {
@@ -15,11 +10,16 @@ namespace KayraExport.Application.Features.Commands.UpdateProduct
     {
         readonly IProductWriteRepository _productWriteRepository;
         readonly IProductReadRepository _productReadRepository;
+        readonly ICacheService _cacheService;
 
-        public UpdateProductCommandHandler(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
+        public UpdateProductCommandHandler(
+            IProductReadRepository productReadRepository, 
+            IProductWriteRepository productWriteRepository, 
+            ICacheService cacheService)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
+            _cacheService = cacheService;
         }
 
 
@@ -49,6 +49,8 @@ namespace KayraExport.Application.Features.Commands.UpdateProduct
             product.UpdateDate = DateTime.UtcNow;
 
             await _productWriteRepository.SaveChangesAsync();
+
+            await _cacheService.RemoveRangeAsync("GetAllProductQueryRequest", "GetByIdProductQueryRequest");
 
             return new() { Message = "Ürün başarıyla güncellendi." };
         }
