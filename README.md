@@ -1,8 +1,4 @@
-# Product API
-
-Bu proje, ürün yönetimi için geliştirilmiş bir **.NET Core Web API**
-uygulamasıdır.\
-Swagger dokümantasyonu ile RESTful ilkelerine ve Katmanlı Mimari prensiplerine uygun şekilde tasarlanmıştır.
+# KayraExportApi
 
 Bu proje, **Onion Architecture** kullanılarak geliştirilmiş bir **.NET Core Web API** uygulamasıdır. Projede **Swagger dokümantasyonu**, **JWT tabanlı kimlik doğrulama** ve **Redis Cache** entegrasyonu uygulanmıştır.
 
