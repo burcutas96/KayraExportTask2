@@ -33,6 +33,7 @@ namespace KayraExport.Persistence
             services.AddScoped<IUserWriteRepository, UserWriteRepository>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using KayraExport.Application.Abstractions.Services;
 using KayraExport.Application.Dtos.User;
 using KayraExport.Application.Repositories;
+using KayraExport.Domain.Entities;
 using KayraExport.Domain.Exceptions.User;
 
 namespace KayraExport.Persistence.Services
@@ -33,6 +34,18 @@ namespace KayraExport.Persistence.Services
             });
             
             await _userWriteRepository.SaveChangesAsync();
+        }
+
+
+
+        public async Task<User> FindByEmailAsync(string email)
+        {
+            User? user = await _userReadRepository
+                .GetSingleReadOnlyAsync(u => u.Email.Equals(email))
+                ?? 
+                throw new UserNotFoundException();
+
+            return user;
         }
     }
 }

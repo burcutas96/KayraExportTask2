@@ -1,11 +1,12 @@
-﻿using KayraExport.Application.Features.Commands.Register;
+﻿using KayraExport.Application.Features.Commands.Login;
+using KayraExport.Application.Features.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KayraExport.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -21,5 +22,11 @@ namespace KayraExport.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterCommandRequest registerCommandRequest)
             => Ok(await _mediator.Send(registerCommandRequest));
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginCommandRequest loginCommandRequest)
+            => Ok(await _mediator.Send(loginCommandRequest));
     }
 }
