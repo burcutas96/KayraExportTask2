@@ -1,4 +1,6 @@
 ﻿using KayraExport.Application.Abstractions.Cache;
+using KayraExport.Application.Features.Queries.GetAllProduct;
+using KayraExport.Application.Features.Queries.GetById;
 using KayraExport.Application.Repositories;
 using KayraExport.Domain.Entities;
 using KayraExport.Domain.Exceptions.Product;
@@ -36,7 +38,8 @@ namespace KayraExport.Application.Features.Commands.DeleteProduct
 
             await _productWriteRepository.SaveChangesAsync();
 
-            await _cacheService.RemoveRangeAsync("GetAllProductQueryRequest", "GetByIdProductQueryRequest");
+            await _cacheService.RemoveRangeAsync($"{nameof(GetAllProductQueryRequest)}", 
+                $"{nameof(GetByIdProductQueryRequest)}_{request.ProductId}");
 
             return new() { Message = "Ürün başarıyla silindi." };
         }

@@ -16,9 +16,9 @@ namespace KayraExport.Application.Behaviors.Cache
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             // Sadece query’leri cacheliyoruz.
-            if (request is ICacheableQuery) 
+            if (request is ICacheableQuery cacheableQuery) 
             {
-                string cacheKey = typeof(TRequest).Name;
+                string cacheKey = cacheableQuery.GetCacheKey();
 
                 TResponse? cachedData = await _cacheService
                     .GetAsync<TResponse>(cacheKey);
